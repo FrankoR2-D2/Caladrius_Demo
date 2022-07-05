@@ -128,14 +128,24 @@ def display_apm(request):
         # print(apm.start_time)
         # print(f"THE START TIME IS {st} for USER ID {uid} ")
         
-        s = apm.first()
+        apm_obj = apm.first()
         #apm._meta.get_field('start_time')
         
-        k = s.get('start_time')
-        print(f'THE START TIME IS ------------------> {k}')
+        s_time = apm_obj.get('start_time')
+        e_time = apm_obj.get('end_time')
+        status = apm_obj.get('status')
+        doc_id = apm_obj.get('doctor_id')
+        
+        print(f'APPOINTMENT DETAILS: {s_time}, {e_time}, {status}, {doc_id}')
+        
+        hp = True
         
         context = {
-            "st": s
+            "s_time": s_time,
+            "e_time": e_time,
+            "status": status,
+            "doc_id": doc_id,
+            "hp": hp
         }
         print("APPOINTMENT EXISTS")
         return render(request, "main/view_apm.html", context)

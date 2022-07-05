@@ -7,18 +7,15 @@
 {% if request.user.is_authenticated %}
 <p>{{ request.user.first_name }} you are logged in.</p>
     
-    {% if not False %}
+    {% if not hp %}
     <h3>{{msg}}</h3>
 
     <p>You can make an appointment <a href="/">here</a></p>
     {% else %}
-        {{st}}
+    <h1>Your Appoitment details.</h1>
+
+        <h3>{{s_time}} {{e_time}}, {{status}}, {{doc_id}}</h3>
     {% endif %}
-
-
-
-
-
 
 {% else %}
 
