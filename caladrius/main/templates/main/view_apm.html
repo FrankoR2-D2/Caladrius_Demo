@@ -13,8 +13,27 @@
     <p>You can make an appointment <a href="/">here</a></p>
     {% else %}
     <h1>Your Appoitment details.</h1>
+        <br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Approved</th>
+            <th scope="col">Doctor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">{{s_time}}</td>
+            <td>{{e_time}}</td>
+            <td>{% if status != False %} Approved {% else %}Not Approved{% endif%}</td>
+            <td>{{doc_id}}</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <h3>{{s_time}} {{e_time}}, {{status}}, {{doc_id}}</h3>
+    
     {% endif %}
 
 {% else %}
