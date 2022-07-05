@@ -57,3 +57,12 @@ django package version
 coverage==5.2.1
 Django==3.1.1
 -------------------------------------------------
+-- mysql -u root -p 'Grogu7878!'
+
+-- show databases;
+
+-- DROP DATABASE caladrius_db;
+-- CREATE DATABASE caladrius_db;
+
+-- GRANT ALL ON caladriusDB.* TO felix@localhost;
+-- FLUSH PRIVILEGES;
