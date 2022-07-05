@@ -10,7 +10,32 @@
 <p>You are a doctor.</p>
 <p>{{msg}}</p>
 
+<div class="containter">
+    <h1>The Doctors</h1>
+    <div class="table table-respnsive table-bordered table-hover">
+        <table class="container">
+            <thead>
+                <th>Patient</th>
+                <th>Patient Notes</th>
+            </thead>
+            {% for obj in pat_list %}
+                {% for usr in user_list%}
+                    {% if obj.user_id == usr.id%}
 
+                    <tr >
+                        <td>
+                        {{usr.first_name}} {{usr.last_name}}
+                        </td>
+                        <td>{{obj.patientNotes }}</td>
+                    </tr>
+                    {% endif %}
+                
+                {% endfor%}
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
 
 
 

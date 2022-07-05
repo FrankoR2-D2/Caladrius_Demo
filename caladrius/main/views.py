@@ -109,7 +109,7 @@ def display_apm(request):
     apt = Appointments.objects.filter(patient_id=uid)
     print(apt)
     if Appointments.objects.filter(patient_id=uid).exists():
-        apm = Appointments.objects.filter(patient_id=uid).values('start_time', 'end_time', 'status', 'doctor_id')
+        apm = Appointments.objects.filter(patient_id=uid).values('start_time', 'end_time', 'status', 'doctor_id', 'patient_id')
          
         # st = apm.
         # print(apm.start_time)
@@ -122,6 +122,8 @@ def display_apm(request):
         e_time = apm_obj.get('end_time')
         status = apm_obj.get('status')
         doc_id = apm_obj.get('doctor_id')
+        pat_id = apm_obj.get('patient_id')
+        
         
         doc = User.objects.filter(pk=doc_id).values('first_name', 'last_name') #.values('first_name', 'last_name')
         
@@ -130,9 +132,13 @@ def display_apm(request):
         doc_f =  doc_obj.get('first_name')
         doc_l = doc_obj.get('last_name')
         
+        pat = User.objects.filter(pk=pat_id).values('first_name', 'last_name')
+        pat_f =  doc_obj.get('first_name')
+        pat_l = doc_obj.get('last_name')
+
         
         doctor = f"Dr. {doc_f} {doc_l}"
-        
+        patient = f"{pat_f} {pat_l}"
         
         print(f"DOCTOR ---------------> {doctor}")
         
@@ -141,22 +147,42 @@ def display_apm(request):
         
         hp = True
         
+        doc_list = Doctor.objects.all()
+        user_list = User.objects.all()
+        apm_list = Appointments.objects.all()
+        pat_list = Patient.objects.all()
+        
+        
         context = {
             "s_time": s_time,
             "e_time": e_time,
             "status": status,
             "doctor": doctor,
-            "hp": hp
+            "patient": patient,
+            "hp": hp,
+            
+            
         }
         print("APPOINTMENT EXISTS")
         return render(request, "main/view_apm.html", context)
 
     else:
+        
+        doc_list = Doctor.objects.all()
+        user_list = User.objects.all()
+        apm_list = Appointments.objects.all()
+        pat_list = Patient.objects.all()
+        
+        
         msg =  "You have not yet created an appointment."
         hp = False
         context = {
             "msg": msg,
-            "hp": hp
+            "hp": hp,
+            "doc_list": doc_list,
+            "user_list": user_list,
+            "apm_list": apm_list,
+            "pat_list": pat_list
         }
         return render(request, "main/view_apm.html", context)
 

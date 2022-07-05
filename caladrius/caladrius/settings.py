@@ -98,11 +98,15 @@ DATABASES = {
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
         'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            "init_command": "SET foreign_key_checks = 0;",  
+            'sql_mode': 'traditional',
         }  
     }
 }
+ #"init_command": "SET foreign_key_checks = 0;",  
+#'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+# 'sql_mode': 'traditional',
+
+
 
 
 # Password validation
