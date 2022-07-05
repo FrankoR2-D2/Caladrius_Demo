@@ -92,6 +92,7 @@ def rqst_appment(request, id):
             ar = form.data['appointment_reason']
             doc_id = id 
             
+            
             apt = Appointments(start_time=st, end_time=et, date=dt, status=app_stat, appointment_reason=ar, doctor_id=doc_id, patient_id = pat_id)
             apt.save()
             
@@ -136,6 +137,20 @@ def display_apm(request):
         status = apm_obj.get('status')
         doc_id = apm_obj.get('doctor_id')
         
+        doc = User.objects.filter(pk=doc_id).values('first_name', 'last_name') #.values('first_name', 'last_name')
+        
+        doc_obj = doc.first()
+        
+        doc_f =  doc_obj.get('first_name')
+        doc_l = doc_obj.get('last_name')
+        
+        
+        doctor = f"Dr. {doc_f} {doc_l}"
+        
+        
+        print(f"DOCTOR ---------------> {doctor}")
+        
+
         print(f'APPOINTMENT DETAILS: {s_time}, {e_time}, {status}, {doc_id}')
         
         hp = True
@@ -144,7 +159,7 @@ def display_apm(request):
             "s_time": s_time,
             "e_time": e_time,
             "status": status,
-            "doc_id": doc_id,
+            "doctor": doctor,
             "hp": hp
         }
         print("APPOINTMENT EXISTS")
