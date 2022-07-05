@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+
+    <form method="POST" class="form-group">
+        {% csrf_token %}  
+        {{form.errors}}
+            
+        {{form|crispy}}
+        <button type="submit" class="btn btn-success">Create Patient</button>
+    </form>
+
+{% else %}
+<p>Login <a href="login/">Here</a></p>
+{% endif %}
+
+{% endblock %}

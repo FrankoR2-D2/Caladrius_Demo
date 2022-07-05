@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home{% endblock%}
+{% block pageHead %}Home{% endblock %}
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<p>{{ request.user.first_name }} you are logged in.</p>
+{% if request.user.is_staff == True %}
+<p>You are a doctor.</p>
+<p>{{msg}}</p>
+
+
+
+
+{% else %}
+<p>You are NOT a doctor.</p>
+
+
+<div class="containter">
+    <h1>The Doctors</h1>
+    <div class="table table-respnsive table-bordered table-hover">
+        <table class="container">
+            <thead>
+                <th>Doctor</th>
+                <th>Specialization</th>
+                <th>Select Doctor</th>
+            </thead>
+            {% for obj in doc_list %}
+                {% for usr in user_list%}
+                    {% if obj.user_id == usr.id%}
+
+                    <tr >
+                        <td>
+                        Dr. {{usr.first_name}} {{usr.last_name}}
+                        </td>
+                        <td>{{obj.specialization}}</td>
+                    <td><a href="rqst_appment/{{obj.user_id}}">Request Appointment</a></td>
+                    </tr>
+                    {% endif %}
+                
+                {% endfor%}
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+
+
+{% endif%}
+
+
+
+
+{% else %}
+
+<p>User is not logged in.</p>
+<p>Don't have an account? Create account <a href="/register">here</a></p>
+{% endif %}
+
+
+
+{% endblock %}

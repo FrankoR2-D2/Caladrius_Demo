@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %}View Appoinments{% endblock%}
+{% block pageHead %}View Appoinments{% endblock %}
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<p>{{ request.user.first_name }} you are logged in.</p>
+    
+
+
+
+
+
+{% else %}
+<p>{{msg}}</p>
+
+<p>User is not logged in.</p>
+<p>Don't have an account? Create account <a href="/register">here</a></p>
+{% endif %}
+
+
+{% endblock %}
