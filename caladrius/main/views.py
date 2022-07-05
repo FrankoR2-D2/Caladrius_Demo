@@ -168,10 +168,10 @@ def display_apm(request):
 
     else:
         
-        doc_list = Doctor.objects.all()
-        user_list = User.objects.all()
-        apm_list = Appointments.objects.all()
-        pat_list = Patient.objects.all()
+        d_list = Doctor.objects.all()
+        u_list = User.objects.all()
+        a_list = Appointments.objects.all()
+        p_list = Patient.objects.all()
         
         
         msg =  "You have not yet created an appointment."
@@ -179,10 +179,10 @@ def display_apm(request):
         context = {
             "msg": msg,
             "hp": hp,
-            "doc_list": doc_list,
-            "user_list": user_list,
-            "apm_list": apm_list,
-            "pat_list": pat_list
+            "d_list": d_list,
+            "u_list": u_list,
+            "a_list": a_list,
+            "p_list": p_list
         }
         return render(request, "main/view_apm.html", context)
 

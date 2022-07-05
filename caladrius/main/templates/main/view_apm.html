@@ -10,6 +10,8 @@
     {% if request.user.is_staff == True %}
         <h1>Your Appoitment details.</h1>
         <br>
+
+{% comment %}         
         <table class="table">
             <thead>
             <tr>
@@ -21,22 +23,23 @@
             </tr>
             </thead>
             <tbody>
-            {% for u in user_list %}
-                {% for u in user_list %}
-                
+                {% for a in a_list %}
+                    
+                        {% for u in u_list %}
 
-                    <tr scope="row">
-                        <td  >{{u.first_name}}</td>
-                        <td>{{doctor}}</td>
-                        <td>{{s_time}}</td>
-                        <td>{{e_time}}</td>
-                        <td>{% if status != False  %} Approved {% else %}Not Approved{% endif%}</td>
-                    </tr>
-                {% endfor %}
+                            <tr scope="row">
+                                <td  >{{u.first_name}}</td>
+                                <td>{{doctor}}</td>
+                                <td>{{s_time}}</td>
+                                <td>{{e_time}}</td>
+                                <td>{% if status != False  %} Approved {% else %}Not Approved{% endif%}</td>
+                            </tr>
+                         {% endfor %}
+            
             {% endfor %}
 
             </tbody>
-        </table>
+        </table> {% endcomment %}
 
 
 
