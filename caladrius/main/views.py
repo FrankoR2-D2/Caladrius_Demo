@@ -1,7 +1,7 @@
 from urllib import request, response
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Appointments, Doctor, ToDoList, Item
+from .models import Appointments, Doctor, ToDoList, Patient
 from .forms import CreateNewList, AppointmentForm
 # Create your views here.
 
@@ -41,33 +41,19 @@ def home(response):
     doc_list = Doctor.objects.all()
     user_list = User.objects.all()
     
-    # user_d = {}
-    # k = 1    
-    # for obj in doc_list:    
-    #     usr = f"{User.objects.get(id=obj.user_id).first_name} {User.objects.get(id=obj.user_id).last_name}"
-    #     user_d[k] = usr
-    #     k+1
-    #     print(usr)   
+    pat_list = Patient.objects.all()
+
     print(f"Felix's email is ----> {User.objects.get(id=1)}")
     
-    
-    # "id": id,
-    # "specialization": 'specialization',
+
     context = {
         "doc_list": doc_list,
         "user_list": user_list,
+        "pat_list": pat_list,
     }
     
-    # for i in len(queryset)
-    # doc = context["object_list"]
+
     print(f"THE LENGTH OF SET IS {len(context['doc_list'])}")
-    
-    # for i in context["object_list"]:
-    #     k = context["object_list"][i]
-    #     print(k)
-    # k = context["object_list"][0]
-    # print(k)
-     #{"msg": welcome},
     return render(response, "main/home.html", context)
 
 
