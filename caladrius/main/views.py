@@ -112,15 +112,42 @@ def rqst_appment(request, id):
 
 
 def display_apm(request):
-    if request.method == 'POST':
-        uid = request.user.id 
-        
-        print(f'VIEW APPOINTMENTS UID -----> {uid}')
-        # return HttpResponseRedirect('/')
+
+
+    uid = request.user.id 
     
+    # apm = Appointments.objects.filter(pk=uid).exists()
+    print(f'VIEW APPOINTMENTS UID -----> {uid}')
+    
+    apt = Appointments.objects.filter(patient_id=uid)
+    print(apt)
+    if Appointments.objects.filter(patient_id=uid).exists():
+        apm = Appointments.objects.filter(patient_id=uid).values('start_time', 'end_time', 'status', 'doctor_id')
+         
+        # st = apm.
+        # print(apm.start_time)
+        # print(f"THE START TIME IS {st} for USER ID {uid} ")
+        
+        s = apm.first()
+        #apm._meta.get_field('start_time')
+        
+        k = s.get('start_time')
+        print(f'THE START TIME IS ------------------> {k}')
+        
+        context = {
+            "st": s
+        }
+        print("APPOINTMENT EXISTS")
+        return render(request, "main/view_apm.html", context)
+
     else:
-        print('THE VIEW APPOINTMENT PAGE IS NOT RENDERING')
-        return render(request, "main/view_apm.html")
+        msg =  "You have not yet created an appointment."
+        hp = False
+        context = {
+            "msg": msg,
+            "hp": hp
+        }
+        return render(request, "main/view_apm.html", context)
 
 
 
