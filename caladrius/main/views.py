@@ -49,7 +49,7 @@ def home(response):
     context = {
         "doc_list": doc_list,
         "user_list": user_list,
-        "pat_list": pat_list,
+        "pat_list": pat_list
     }
     
 
