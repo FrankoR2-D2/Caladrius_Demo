@@ -9,7 +9,7 @@ python manage.py startapp register
 python manage.py migrate 
 python manage.py runserver
 
-python/3 manage.py makemigrations main
+python3 manage.py makemigrations main
 python3 manage.py sqlmigrate movies 0001
 python3 manage.py sqlmigrate main
 remember to after change to orm/db:
@@ -22,10 +22,9 @@ email: felix@gmail.com
 password: caladrius, i9#w3*3H
 
 FirstPatient
-password: hpa28opg
+password: FOXTROTpapa616
 
-FirstDoctor
-password: 
+
 
 
 -----------------------------------------------------
